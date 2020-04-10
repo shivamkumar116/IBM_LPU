@@ -12,8 +12,8 @@ import in.ibm.demo.model.Image;
 
 public class ImageCrudDaoImpl implements ImageCrudDao {
 
-	ConnectionFactory factory = ConnectionFactory.getConnectionObject();
-	Connection con = null;
+	private ConnectionFactory factory = ConnectionFactory.getConnectionObject();
+	private Connection con = null;
 
 	@Override
 	public void insertImage(Image objImage) {

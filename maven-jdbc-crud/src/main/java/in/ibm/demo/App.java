@@ -67,8 +67,13 @@ public class App
     			img.setAvailable(sc.nextBoolean());
     			app.refImageCrudService.updateImage(img);
     			break;
-    			
-    			
+    		case 0:
+				System.out.println("bye.!!!!!");
+				System.exit(0);
+				break;
+			default:
+				break;
+    		
     		}
     		
     	}
