@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+<bean name="customer" class="in.ibm.bean.Customer">
+<constructor-arg name="customerName" value="Shivam"></constructor-arg>
+<constructor-arg name="address" ref="address"></constructor-arg>
+</bean>
+<bean id="address" class="in.ibm.bean.Address">
+<property name="addressLine1" value="Palampur"></property>
+<property name="addressLine2" value="HP"></property>
+</bean>
+
+
+</beans>
