@@ -20,8 +20,6 @@ public class ImageRepositoryImpl implements ImageRepository {
 	@Autowired
 	private DataSource dataSource;
 	
-	
-	
 	/*
 	 * public ImageRepositoryImpl(DataSource dataSource) { super(); this.dataSource
 	 * = dataSource; }
