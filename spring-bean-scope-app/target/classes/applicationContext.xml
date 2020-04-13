@@ -11,7 +11,7 @@
 		<property name="cdYear" value="2016"></property>
 	</bean>
  -->
-<bean id="cd" class="in.ibm.bean.CD" scope="prototype">
+<bean id="cd" class="in.ibm.bean.CD" scope="prototype" init-method="init">
 		<property name="cdTitle" value="GTA 5"></property>
 		<property name="cdYear" value="2016"></property>
 	</bean>

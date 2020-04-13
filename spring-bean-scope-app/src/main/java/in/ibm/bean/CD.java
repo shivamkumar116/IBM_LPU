@@ -24,5 +24,13 @@ public class CD {
 	public void getDetails() {
 		System.out.printf("CD_ID: %s CD_NAME: %s CD YEAR %d\n", getCdID(), getCdTitle(), getCdYear());
 	}
+	public void init() {
+		System.out.println("Init method called------");
+	}
+	
+	public void distory() {
+		
+		System.out.println("Destory method called -----------");
+	}
 
 }
