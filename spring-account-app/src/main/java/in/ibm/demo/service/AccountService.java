@@ -12,7 +12,10 @@ public interface AccountService {
 	public void deleteAccount(String accountNumber);
 
 	public void deleteAll();
-	
+
 	public List<Account> listAll();
+
 	public Account findAccountByAccountNumber(String accountNumber);
+
+	public List<Account> findByAccountBalance(double accountBalance);
 }

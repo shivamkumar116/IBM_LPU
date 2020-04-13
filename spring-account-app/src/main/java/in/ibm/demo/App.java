@@ -14,7 +14,8 @@ import in.ibm.demo.bean.AccountType;
 public class App {
 	public static void main(String[] args) {
 		int choice = 0;
-		String accountNumber =null;
+		String accountNumber = null;
+		double accountBalance;
 		Scanner sc = new Scanner(System.in);
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -29,6 +30,7 @@ public class App {
 			System.out.println("4. Update by id");
 			System.out.println("5. List All");
 			System.out.println("6. find account by Number :");
+			System.out.println("7. Find Account by balance : ");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -52,13 +54,13 @@ public class App {
 				break;
 			case 4:
 				System.out.println("Enter account number ");
-			 accountNumber = sc.nextLine();
+				accountNumber = sc.nextLine();
 				account.setAccountNumber(accountNumber);
 				System.out.println("Enter account type ");
 				String accountType = sc.nextLine();
 				account.setAccountType(accountType);
 				System.out.println("Enter account balance ");
-				double accountBalance = sc.nextDouble();
+				accountBalance = sc.nextDouble();
 				account.setAccountBalance(accountBalance);
 				service.updateAccount(account);
 				break;
@@ -75,14 +77,26 @@ public class App {
 			case 6:
 				System.out.println("Enter account number : ");
 				accountNumber = sc.nextLine();
-				account =service.findAccountByAccountNumber(accountNumber);
+				account = service.findAccountByAccountNumber(accountNumber);
 				System.out.println(account);
-			break;
+				break;
+			case 7:
+				System.out.println("Enter the balance : ");
+				accountBalance=sc.nextDouble();
+				sc.nextLine();
+				List<Account> acc = service.findByAccountBalance(accountBalance);
+				for(Account a :acc) {
+					System.out.println(a);
+				}
+				 System.out.println(account);
+				break;
+
 			default:
 				System.out.println("BYe!!!!!!");
 				System.exit(0);
 
 			}
+		
 
 		} while (choice != 0);
 

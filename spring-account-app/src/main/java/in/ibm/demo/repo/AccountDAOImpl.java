@@ -82,4 +82,10 @@ public class AccountDAOImpl implements AccountDAO {
 		return  jdbcTemplate.queryForObject("SELECT * from account where accountNumber =?", new Object[] {accountNumber}, new AccountMapper());
 	}
 
+	@Override
+	public List<Account> findByAccountBalance(double accountBalance) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.query("SELECT * FROM account where accountBalance >?",new Object[] {accountBalance}, new AccountMapper());
+	}
+
 }

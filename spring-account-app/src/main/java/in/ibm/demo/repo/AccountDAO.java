@@ -18,4 +18,6 @@ public interface AccountDAO {
 	
 	public Account findAccountByAccountNumber(String accountNumber);
 	
+	public List<Account> findByAccountBalance(double accountBalance);
+	
 }

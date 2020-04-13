@@ -60,4 +60,12 @@ public class AccountServiceImpl implements AccountService {
 		return accountDAO.findAccountByAccountNumber(accountNumber);
 	}
 
+
+	@Override
+	public List<Account> findByAccountBalance(double accountBalance) {
+		// TODO Auto-generated method stub
+		
+		return accountDAO.findByAccountBalance(accountBalance);
+	}
+
 }
