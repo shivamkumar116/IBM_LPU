@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import in.ibm.demo.bean.Account;
 import in.ibm.demo.repo.AccountDAO;
+import in.ibm.demo.repo.NoAccountFoundException;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -27,14 +28,14 @@ public class AccountServiceImpl implements AccountService {
 
 
 	@Override
-	public Account updateAccount(Account account) {
+	public Account updateAccount(Account account) throws NoAccountFoundException {
 		
 		return accountDAO.updateAccount(account);
 	}
 
 
 	@Override
-	public void deleteAccount(String accountNumber) {
+	public void deleteAccount(String accountNumber) throws NoAccountFoundException {
 		accountDAO.deleteAccount(accountNumber);
 		
 	}

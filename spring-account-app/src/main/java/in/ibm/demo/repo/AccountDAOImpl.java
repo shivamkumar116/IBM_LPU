@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -41,11 +42,15 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public void deleteAccount(String accountNumber) {
+	public void deleteAccount(String accountNumber) throws NoAccountFoundException {
 		logger.log(Level.INFO, "Executing delete statement..........");
 		String query = "DELETE FROM account where accountNumber = '" + accountNumber + "'";
-		jdbcTemplate.execute(query);
-		logger.log(Level.INFO, "Account successfully deleted..........");
+		int i = jdbcTemplate.update(query);
+		if(i==0)
+			throw new NoAccountFoundException("Invalid Account Number");
+		else
+			logger.log(Level.INFO, "Account successfully deleted..........");
+		
 
 	}
 
@@ -55,16 +60,20 @@ public class AccountDAOImpl implements AccountDAO {
 		String query = "truncate table account";
 		jdbcTemplate.execute(query);
 		logger.log(Level.INFO, "Account successfully deleted..........");
+		
 
 	}
 
 	@Override
-	public Account updateAccount(Account account) {
+	public Account updateAccount(Account account) throws NoAccountFoundException {
 		logger.log(Level.INFO, "Executing update statement..........");
 		String query = "UPDATE account set accountType = '" + account.getAccountType() + "',accountBalance='"
 				+ account.getAccountBalance() + "'" + "where accountNumber='" + account.getAccountNumber() + "'";
-		jdbcTemplate.execute(query);
-		logger.log(Level.INFO, "Account successfully updated..........");
+		int i =jdbcTemplate.update(query);
+		if(i==0)
+			throw new NoAccountFoundException("Invalid Account Number");
+		else
+			logger.log(Level.INFO, "Account successfully updated..........");
 		return account;
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import in.ibm.demo.bean.Account;
 import in.ibm.demo.service.AccountServiceImpl;
 import in.ibm.demo.bean.AccountType;
+import in.ibm.demo.repo.NoAccountFoundException;
 
 public class App {
 	public static void main(String[] args) {
@@ -47,7 +48,12 @@ public class App {
 			case 2:
 				System.out.println("Enter the id : ");
 				String id = sc.nextLine();
-				service.deleteAccount(id);
+				try {
+					service.deleteAccount(id);
+				} catch (NoAccountFoundException e) {
+					
+					e.printStackTrace();
+				}
 				break;
 			case 3:
 				service.deleteAll();
@@ -62,7 +68,12 @@ public class App {
 				System.out.println("Enter account balance ");
 				accountBalance = sc.nextDouble();
 				account.setAccountBalance(accountBalance);
-				service.updateAccount(account);
+				try {
+					service.updateAccount(account);
+				} catch (NoAccountFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 
 			case 5:
