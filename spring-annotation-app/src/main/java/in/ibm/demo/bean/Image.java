@@ -16,7 +16,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-//@Component(value = "image")
+@Component(value = "image")
 public class Image {
 	
 	private String imageID;
