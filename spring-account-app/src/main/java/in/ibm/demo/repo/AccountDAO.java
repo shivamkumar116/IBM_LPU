@@ -16,4 +16,6 @@ public interface AccountDAO {
 	
 	public List<Account> listAll();
 	
+	public Account findAccountByAccountNumber(String accountNumber);
+	
 }

@@ -14,4 +14,5 @@ public interface AccountService {
 	public void deleteAll();
 	
 	public List<Account> listAll();
+	public Account findAccountByAccountNumber(String accountNumber);
 }

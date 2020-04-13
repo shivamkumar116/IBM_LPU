@@ -76,4 +76,10 @@ public class AccountDAOImpl implements AccountDAO {
 		return accounts;
 	}
 
+	@Override
+	public Account findAccountByAccountNumber(String accountNumber) {
+		// TODO Auto-generated method stub
+		return  jdbcTemplate.queryForObject("SELECT * from account where accountNumber =?", new Object[] {accountNumber}, new AccountMapper());
+	}
+
 }

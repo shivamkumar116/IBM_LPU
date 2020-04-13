@@ -14,6 +14,7 @@ import in.ibm.demo.bean.AccountType;
 public class App {
 	public static void main(String[] args) {
 		int choice = 0;
+		String accountNumber =null;
 		Scanner sc = new Scanner(System.in);
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -27,6 +28,7 @@ public class App {
 			System.out.println("3. Delete All");
 			System.out.println("4. Update by id");
 			System.out.println("5. List All");
+			System.out.println("6. find account by Number :");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -50,7 +52,7 @@ public class App {
 				break;
 			case 4:
 				System.out.println("Enter account number ");
-				String accountNumber = sc.nextLine();
+			 accountNumber = sc.nextLine();
 				account.setAccountNumber(accountNumber);
 				System.out.println("Enter account type ");
 				String accountType = sc.nextLine();
@@ -70,6 +72,12 @@ public class App {
 				}
 
 				break;
+			case 6:
+				System.out.println("Enter account number : ");
+				accountNumber = sc.nextLine();
+				account =service.findAccountByAccountNumber(accountNumber);
+				System.out.println(account);
+			break;
 			default:
 				System.out.println("BYe!!!!!!");
 				System.exit(0);
