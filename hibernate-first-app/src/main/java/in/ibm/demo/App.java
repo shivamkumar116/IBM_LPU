@@ -33,6 +33,7 @@ public class App {
 			System.out.println("*CMS*");
 			System.out.println("1. Add Customer");
 			System.out.println("2. List all customers");
+			System.out.println("3. Find customer by id :");
 			System.out.println("Enter your choice : ");
 			choice = sc.nextInt();
 			sc.nextLine();
@@ -63,10 +64,21 @@ public class App {
 				for(Customer cus:list)
 					System.out.println(cus);
 				break;
+				
+			case 3:
+				System.out.println("Enter id :");
+				customer = customerService.findCustomerByID(sc.next());
+				if(customer==null)
+					System.out.println("No record found!!");
+				else
+					System.out.println(customer);
+				
+				break;
 
 			case 0:
 				System.out.println("Bye!--");
 				System.exit(0);
+				break;
 			default:
 				break;
 			}

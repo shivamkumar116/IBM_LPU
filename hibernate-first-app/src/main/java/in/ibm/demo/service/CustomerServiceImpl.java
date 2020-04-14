@@ -26,4 +26,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.listAllCustomer();
 	}
 
+	@Override
+	public Customer findCustomerByID(String id) {
+		// TODO Auto-generated method stub
+		return dao.findCustomerByID(id);
+	}
+
 }

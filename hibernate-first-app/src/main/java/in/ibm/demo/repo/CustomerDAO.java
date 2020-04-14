@@ -9,5 +9,7 @@ public interface CustomerDAO {
 	public Customer createCustomer(Customer customer);
 
 	public List<Customer> listAllCustomer();
+	
+	public Customer findCustomerByID(String id);
 
 }
