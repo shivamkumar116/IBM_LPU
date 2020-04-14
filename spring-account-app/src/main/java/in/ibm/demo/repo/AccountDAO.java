@@ -8,9 +8,9 @@ public interface AccountDAO {
 
 	public Account createAccount(Account account);
 
-	public Account updateAccount(Account account) throws NoAccountFoundException;
+	public Account updateAccount(Account account);
 
-	public  void deleteAccount(String accountNumber) throws NoAccountFoundException;
+	public  void deleteAccount(String accountNumber);
 
 	public void deleteAll();
 

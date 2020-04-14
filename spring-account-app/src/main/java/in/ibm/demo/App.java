@@ -30,8 +30,8 @@ public class App {
 			System.out.println("3. Delete All");
 			System.out.println("4. Update by id");
 			System.out.println("5. List All");
-			System.out.println("6. find account by Number :");
-			System.out.println("7. Find Account by balance : ");
+			System.out.println("6. find account by Number");
+			System.out.println("7. Find Account by balance");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -48,12 +48,9 @@ public class App {
 			case 2:
 				System.out.println("Enter the id : ");
 				String id = sc.nextLine();
-				try {
-					service.deleteAccount(id);
-				} catch (NoAccountFoundException e) {
-					
-					e.printStackTrace();
-				}
+
+				service.deleteAccount(id);
+
 				break;
 			case 3:
 				service.deleteAll();
@@ -68,12 +65,9 @@ public class App {
 				System.out.println("Enter account balance ");
 				accountBalance = sc.nextDouble();
 				account.setAccountBalance(accountBalance);
-				try {
-					service.updateAccount(account);
-				} catch (NoAccountFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+				service.updateAccount(account);
+
 				break;
 
 			case 5:
@@ -93,13 +87,12 @@ public class App {
 				break;
 			case 7:
 				System.out.println("Enter the balance : ");
-				accountBalance=sc.nextDouble();
-				sc.nextLine();
+				accountBalance = sc.nextDouble();
 				List<Account> acc = service.findByAccountBalance(accountBalance);
-				for(Account a :acc) {
+				for (Account a : acc) {
 					System.out.println(a);
 				}
-				 System.out.println(account);
+				System.out.println(account);
 				break;
 
 			default:
@@ -107,7 +100,6 @@ public class App {
 				System.exit(0);
 
 			}
-		
 
 		} while (choice != 0);
 

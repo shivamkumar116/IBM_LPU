@@ -28,14 +28,14 @@ public class AccountServiceImpl implements AccountService {
 
 
 	@Override
-	public Account updateAccount(Account account) throws NoAccountFoundException {
+	public Account updateAccount(Account account)  {
 		
 		return accountDAO.updateAccount(account);
 	}
 
 
 	@Override
-	public void deleteAccount(String accountNumber) throws NoAccountFoundException {
+	public void deleteAccount(String accountNumber)  {
 		accountDAO.deleteAccount(accountNumber);
 		
 	}
