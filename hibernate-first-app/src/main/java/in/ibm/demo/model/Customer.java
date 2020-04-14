@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Cleanup;
+import lombok.Data;
 
 
 @Entity
+@Data
 @Table(name = "customer")
 public class Customer implements Serializable {
 	
@@ -24,38 +26,6 @@ public class Customer implements Serializable {
 	private String customerEmail;
 	@Column(name = "isActive")
 	private boolean isActive;
-
-	public String getCustomerID() {
-		return customerID;
-	}
-
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
-	}
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-	public String getCustomerEmail() {
-		return customerEmail;
-	}
-
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
 
 	@Override
 	public String toString() {
