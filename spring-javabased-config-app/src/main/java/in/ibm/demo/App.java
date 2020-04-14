@@ -1,5 +1,6 @@
 package in.ibm.demo;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,11 +16,14 @@ public class App {
 		Image image = context.getBean("image", Image.class);
 		ImageServiceImpl service = context.getBean("imageServiceImpl", ImageServiceImpl.class);
 
-		image.setImageID(UUID.randomUUID().toString());
-		image.setImageURL("demo");
-		service.createImage(image);
+		/*
+		 * image.setImageID(UUID.randomUUID().toString()); image.setImageURL("demo");
+		 * service.createImage(image);
+		 */
 
-		System.out.println(image);
+		List<Image> images =service.listAll();
+		for(Image im:images)
+			System.out.println(im);
 
 	}
 }
