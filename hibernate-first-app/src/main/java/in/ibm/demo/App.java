@@ -28,18 +28,20 @@ public class App {
 		String fname;
 		String email;
 		boolean isactive;
+		Customer customer=new Customer();
 		
 		do {
 			System.out.println("*CMS*");
 			System.out.println("1. Add Customer");
 			System.out.println("2. List all customers");
-			System.out.println("3. Find customer by id :");
+			System.out.println("3. Find customer by id");
+			System.out.println("4. Update customer by Id");
 			System.out.println("Enter your choice : ");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
 			case 1:
-				Customer customer=new Customer();
+				
 				System.out.println("Enter customer name :");
 				fname= sc.nextLine();
 				System.out.println("Enter customer email :");
@@ -75,6 +77,27 @@ public class App {
 				
 				break;
 
+			case 4:
+				System.out.println("Enter id :");
+				customer.setCustomerID(sc.next());
+				System.out.println("Enter name :");
+				customer.setCustomerName(sc.next());
+				System.out.println("Enter email :");
+				customer.setCustomerEmail(sc.next());
+				System.out.println("is customer Active?\n1.Yes\n2.NO");
+				isCustomerActive=sc.nextInt();
+				sc.nextLine();
+				if(isCustomerActive==1)
+					isactive=true;
+				else
+					isactive=false;
+				customer.setActive(isactive);
+				customer =customerService.updateCustomerByID(customer);
+				if(customer==null)
+					System.out.println("NO record found!!");
+				else
+					System.out.println("record updated\n"+customer);
+				break;
 			case 0:
 				System.out.println("Bye!--");
 				System.exit(0);

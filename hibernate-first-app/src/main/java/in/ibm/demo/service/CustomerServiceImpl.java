@@ -32,4 +32,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.findCustomerByID(id);
 	}
 
+	@Override
+	public Customer updateCustomerByID(Customer customer) {
+		// TODO Auto-generated method stub
+		return dao.updateCustomerByID(customer);
+	}
+
 }

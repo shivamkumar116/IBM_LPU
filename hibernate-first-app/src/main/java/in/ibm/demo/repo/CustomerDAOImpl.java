@@ -42,4 +42,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return session.get(Customer.class, id);
 	}
 
+	@Override
+	public Customer updateCustomerByID(Customer customer) {
+		
+		session.getTransaction().begin();
+		session.update(customer);
+		session.getTransaction().commit();
+		return customer;
+	}
+
 }
