@@ -14,7 +14,8 @@ public class App {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		EmployeeService empService = context.getBean("employeeServiceImpl", EmployeeService.class);
-		Employee e =new Employee();
+		/* Employee e =new Employee(); */
+		Employee e =context.getBean("employee",Employee.class);
 		int choice = -1;
 		int id;
 		String name;
