@@ -1,6 +1,9 @@
 package in.ibm.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.ibm.factory.MyFactory;
 import in.ibm.model.ToDo;
 
 public class ControllerServlet extends HttpServlet {
@@ -17,18 +21,30 @@ public class ControllerServlet extends HttpServlet {
 
 	private List<String> errors;
 
+	private MyFactory factory;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doProcess(request, response);
+		try {
+			doProcess(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doProcess(request, response);
+		try {
+			doProcess(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		errors = new ArrayList<String>();
 		String name = request.getParameter("name").toString();
 		int id = 0;
@@ -51,7 +67,16 @@ public class ControllerServlet extends HttpServlet {
 			ToDo todo = new ToDo(id, name, c_by);
 			request.setAttribute("todo", todo);// key and value pair
 			RequestDispatcher view = request.getRequestDispatcher("success.jsp");
-			view.forward(request, response);
+			factory = MyFactory.getMyFactory();
+			Connection con = factory.getMyConnection();
+			PreparedStatement st = con.prepareStatement("Insert into todo values(?,?,?)");
+			st.setInt(1, todo.getId());
+			st.setString(2, todo.getName());
+			st.setString(3, todo.getCompletedBy());
+			int i = st.executeUpdate();
+			if (i > 0)
+				view.forward(request, response);
+
 		} else {
 
 			request.setAttribute("error", errors);// key and value pair
