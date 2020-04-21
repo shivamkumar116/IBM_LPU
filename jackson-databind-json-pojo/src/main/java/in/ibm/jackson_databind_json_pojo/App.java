@@ -8,10 +8,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * Hello world!
- *
- */
+
 public class App {
 	public static void main(String[] args) {
 		try {
@@ -54,7 +51,7 @@ public class App {
 		theAddress.setState("HP");
 		theAddress.setZip("176059");
 		theCustomer.setAddress(theAddress);
-		ObjectMapper mapper= new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(new File("Data/Customer.json"), theCustomer);
 		} catch (JsonGenerationException e) {
