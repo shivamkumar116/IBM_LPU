@@ -22,6 +22,7 @@ public class ControllerServlet extends HttpServlet {
 	private List<String> errors;
 
 	private MyFactory factory;
+	private Connection con;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,6 +47,7 @@ public class ControllerServlet extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		errors = new ArrayList<String>();
+		factory = MyFactory.getMyFactory();
 		String name = request.getParameter("name").toString();
 		int id = 0;
 		if (name.length() < 8) {
@@ -67,8 +69,7 @@ public class ControllerServlet extends HttpServlet {
 			ToDo todo = new ToDo(id, name, c_by);
 			request.setAttribute("todo", todo);// key and value pair
 			RequestDispatcher view = request.getRequestDispatcher("success.jsp");
-			factory = MyFactory.getMyFactory();
-			Connection con = factory.getMyConnection();
+			con = factory.getMyConnection();
 			PreparedStatement st = con.prepareStatement("Insert into todo values(?,?,?)");
 			st.setInt(1, todo.getId());
 			st.setString(2, todo.getName());
