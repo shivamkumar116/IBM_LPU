@@ -1,0 +1,17 @@
+{
+	"id": 2,
+	"firstName": "Anil",
+	"lastName": "Kuar",
+	"active": false,
+	"address": {
+		"street": "01",
+		"city": "PLP",
+		"state": "HP",
+		"zip": "176059",
+		"country": "IN"
+	},
+	"languages": [
+		"Hindi",
+		"English"
+	]
+}
