@@ -44,7 +44,7 @@ public class App {
 		Customer theCustomer = new Customer();
 		theCustomer.setId(2);
 		theCustomer.setFirstName("Anil");
-		theCustomer.setLastName("Kuar");
+		theCustomer.setLastName("Kumar");
 		String[] lang = { "Hindi", "English" };
 		theCustomer.setLanguages(lang);
 		Address theAddress = new Address();
