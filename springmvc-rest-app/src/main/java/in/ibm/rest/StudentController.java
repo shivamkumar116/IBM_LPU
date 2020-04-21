@@ -1,7 +1,6 @@
 package in.ibm.rest;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +39,17 @@ public class StudentController {
 		return students;
 
 	}
+	
+	
+	//create student
+	@PostMapping("/students")
+	public Student createStudent(@RequestBody Student student) {
+		students.add(student);
+		return student;
+		
+	}
+	
+	
 	/*
 	 * @GetMapping("/students/{studentID}") public Student
 	 * getStudentByID(@PathVariable int studentID) {
