@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import in.ibm.dao.CustomerDAO;
 import in.ibm.entity.Customer;
+import in.ibm.exception.CustomerNotFoundException;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -18,9 +19,15 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public List<Customer> listCustomers() {
+	public List<Customer> getCustomers() {
 		
-		return customerDao.listCustomers();
+		return customerDao.getCustomers();
+	}
+
+	@Override
+	public Customer getCustomerByID(int id) throws CustomerNotFoundException {
+		
+		return customerDao.getCustomerByID(id);
 	}
 
 }
