@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: EMS
+  h2:
+    console:
+      enabled: true
+      path: /h2
