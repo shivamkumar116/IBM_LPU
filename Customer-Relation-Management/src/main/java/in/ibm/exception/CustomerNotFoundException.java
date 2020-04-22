@@ -1,6 +1,6 @@
 package in.ibm.exception;
 
-public class CustomerNotFoundException extends Throwable {
+public class CustomerNotFoundException extends RuntimeException {
 
 
 	private static final long serialVersionUID = 5656508580691739924L;
