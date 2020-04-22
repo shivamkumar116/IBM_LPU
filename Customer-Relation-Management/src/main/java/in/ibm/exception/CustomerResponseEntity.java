@@ -1,11 +1,11 @@
 package in.ibm.exception;
 
-public class CustomerNotFoundResponseEntity {
+public class CustomerResponseEntity {
 	private int statusCode;
 	private String message;
 	private long time;
 
-	public CustomerNotFoundResponseEntity(int statusCode, String message, long time) {
+	public CustomerResponseEntity(int statusCode, String message, long time) {
 		super();
 		this.statusCode = statusCode;
 		this.message = message;
@@ -13,7 +13,7 @@ public class CustomerNotFoundResponseEntity {
 	}
 	
 
-	public CustomerNotFoundResponseEntity(int statusCode) {
+	public CustomerResponseEntity(int statusCode) {
 		super();
 		this.statusCode = statusCode;
 	}

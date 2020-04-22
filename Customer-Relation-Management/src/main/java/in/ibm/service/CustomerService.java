@@ -9,6 +9,7 @@ public interface CustomerService {
 
 	public List<Customer> getCustomers();
 	
-	public Customer getCustomerByID(int id) throws CustomerNotFoundException;
+	public Customer getCustomerByID(int id);
+	public Customer createCustomer(Customer customer);
 	
 }

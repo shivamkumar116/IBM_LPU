@@ -20,14 +20,19 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional
 	public List<Customer> getCustomers() {
-		
+
 		return customerDao.getCustomers();
 	}
 
 	@Override
-	public Customer getCustomerByID(int id) throws CustomerNotFoundException {
-		
+	public Customer getCustomerByID(int id) {
+
 		return customerDao.getCustomerByID(id);
+	}
+
+	@Override
+	public Customer createCustomer(Customer customer) {
+		return customerDao.createCustomer(customer);
 	}
 
 }

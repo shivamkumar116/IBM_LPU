@@ -28,14 +28,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer getCustomerByID(int id) throws CustomerNotFoundException {
+	public Customer getCustomerByID(int id) {
 		Session session = sessionFactory.openSession();
 		Customer objCustomer = session.get(Customer.class, id);
-		if (objCustomer == null)
-			throw new CustomerNotFoundException("No such Customer with ID - " + id);
-
 		return objCustomer;
 
+	}
+
+	@Override
+	public Customer createCustomer(Customer customer) {
+		Session session = sessionFactory.openSession();
+		session.saveOrUpdate(customer);
+		return customer;
 	}
 
 }
