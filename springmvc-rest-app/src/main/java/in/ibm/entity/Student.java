@@ -17,8 +17,7 @@ public class Student {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
-
-
+	
 	public int getId() {
 		return id;
 	}
