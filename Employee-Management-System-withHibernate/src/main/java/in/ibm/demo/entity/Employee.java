@@ -29,7 +29,7 @@ public class Employee {
 	private String email;
 	
 	public Employee() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Employee(String firstname, String lastname, String email) {
