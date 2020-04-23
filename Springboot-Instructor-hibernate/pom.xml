@@ -14,9 +14,7 @@
 	<name>Springboot-Instructor-hibernate</name>
 	<description>Spring boot application of instructor with hibernate one to one relationship</description>
 
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
+	
 
 	<dependencies>
 		<dependency>

@@ -3,7 +3,7 @@ package in.ibm.demo.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
+
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

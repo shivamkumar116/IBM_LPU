@@ -38,6 +38,7 @@ public class InstructorRestController {
 
 	@PutMapping("/instructors")
 	public Instructor updateInstructor(@RequestBody Instructor instructor) {
+		
 		return instructorService.updateInstructor(instructor);
 	}
 
