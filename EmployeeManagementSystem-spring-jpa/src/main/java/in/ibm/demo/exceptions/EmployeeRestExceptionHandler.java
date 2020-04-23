@@ -1,12 +1,9 @@
-package in.ibm.demo.rest;
+package in.ibm.demo.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import in.ibm.demo.exceptions.EmployeeNotFoundException;
-import in.ibm.demo.exceptions.EmployeeResponseEntity;
 
 @ControllerAdvice
 public class EmployeeRestExceptionHandler {
