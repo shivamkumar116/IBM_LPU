@@ -1,5 +1,7 @@
 package in.ibm.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import in.ibm.demo.dao.AccountDAO;
 import in.ibm.demo.data.Account;
+import in.ibm.demo.dto.AccountDto;
 
 @Service
 @EnableTransactionManagement
@@ -27,15 +30,32 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	@Transactional
-	public ResponseEntity<Iterable<Account>> getAccounts() {
+	public ResponseEntity<List<AccountDto>> getAccounts() {
 		Iterable<Account> accounts = accountDAO.findAll();
-		return ResponseEntity.ok().body(accounts);
+		List<AccountDto> accountDTO = new ArrayList<AccountDto>();
+		for (Account a : accounts) {
+			accountDTO.add(new AccountDto(a.getAccountID(), a.getAccountType(), a.getBalance()));
+		}
+		return ResponseEntity.ok().body(accountDTO);
 	}
 
 	@Override
-	public ResponseEntity<Optional<Account>> findAccountById(int id) {
-		Optional<Account> account = accountDAO.findById(id);
-		return ResponseEntity.ok().body(account);
+	public ResponseEntity<AccountDto> findAccountById(int id) {
+		if (accountDAO.findById(id).isPresent()) {
+			Account account = accountDAO.findById(id).get();
+			AccountDto accountDTO = new AccountDto(account.getAccountID(), account.getAccountType(),
+					account.getBalance());
+			return ResponseEntity.ok().body(accountDTO);
+		} else
+			return null;
+	}
+
+	@Override
+	public ResponseEntity<AccountDto> save(AccountDto accountDto) {
+		Account account = new Account(accountDto.getAccountID(), accountDto.getAccountType(),
+				accountDto.getAccountBalance());
+		accountDAO.save(account);
+		return ResponseEntity.ok().body(accountDto);
 	}
 
 }

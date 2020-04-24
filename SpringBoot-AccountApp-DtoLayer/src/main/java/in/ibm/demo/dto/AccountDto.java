@@ -1,0 +1,48 @@
+package in.ibm.demo.dto;
+
+public class AccountDto {
+
+	private String accountID;
+	private String accountType;
+	private double accountBalance;
+
+	
+	
+	public AccountDto(String accountID, String accountType, double accountBalance) {
+		super();
+		this.accountID = accountID;
+		this.accountType = accountType;
+		this.accountBalance = accountBalance;
+	}
+
+	public String getAccountID() {
+		return accountID;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public double getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountID(String accountID) {
+		this.accountID = accountID;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public void setAccountBalance(double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	@Override
+	public String toString() {
+		return "AccountDto [accountID=" + accountID + ", accountType=" + accountType + ", accountBalance="
+				+ accountBalance + "]";
+	}
+
+}
