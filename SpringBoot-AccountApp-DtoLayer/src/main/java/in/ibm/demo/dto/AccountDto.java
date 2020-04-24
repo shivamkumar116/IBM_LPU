@@ -1,9 +1,18 @@
 package in.ibm.demo.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Model for Account")
 public class AccountDto {
 
+	@ApiModelProperty(notes = "field for Consumer Number")
 	private String accountID;
+	
+	@ApiModelProperty(notes = "Field for account type")
 	private String accountType;
+	
+	@ApiModelProperty(notes = "Field for balance of the account")
 	private double accountBalance;
 
 	

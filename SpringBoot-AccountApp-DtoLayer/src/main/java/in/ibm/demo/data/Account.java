@@ -12,24 +12,23 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "accounts")
-@ApiModel(description = "Model for Account")
+
 public class Account {
 
-	@ApiModelProperty(notes = "The database generated AccountID")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_number")
 	private int accountNumber;
 
-	@ApiModelProperty(notes = "field for Consumer Number")
+	
 	@Column(name = "account_ID", nullable = false)
 	private String accountID;
 
-	@ApiModelProperty(notes = "Field for account type")
+	
 	@Column(name = "account_type")
 	private String accountType;
 
-	@ApiModelProperty(notes = "Field for balance of the account")
+	
 	@Column(name = "account_balance")
 	private double balance;
 

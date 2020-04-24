@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,5 +56,16 @@ public class AccountRestController {
 	public ResponseEntity<AccountDto> saveAccount(@RequestBody AccountDto accountDto) {
 		return accountService.save(accountDto);
 	}
+	
+	@ApiOperation("Delete an account by Id")
+	@DeleteMapping("/accounts/{accountID}")
+	public ResponseEntity<AccountDto> deleteaccount(@PathVariable int accountID){
+		return accountService.deleteAccount(accountID);
+	}
 
+	@ApiOperation("update an account")
+	@PutMapping("/accounts")
+	public ResponseEntity<Account> updateAccount(@RequestBody Account account){
+		return accountService.updateAccont(account);
+	}
 }

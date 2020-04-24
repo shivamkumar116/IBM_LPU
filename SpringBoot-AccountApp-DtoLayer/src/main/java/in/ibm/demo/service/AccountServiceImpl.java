@@ -58,4 +58,28 @@ public class AccountServiceImpl implements AccountService {
 		return ResponseEntity.ok().body(accountDto);
 	}
 
+	@Override
+	public ResponseEntity<AccountDto> deleteAccount(int id) {
+		if (accountDAO.findById(id).isPresent()) {
+			Account account = accountDAO.findById(id).get();
+			AccountDto accountDto = new AccountDto(account.getAccountID(), account.getAccountType(),
+					account.getBalance());
+			accountDAO.deleteById(id);
+			return ResponseEntity.ok().body(accountDto);
+		} else
+			return null;
+	}
+
+	@Override
+	public ResponseEntity<Account> updateAccont(Account account) {
+		if(accountDAO.findById(account.getAccountNumber()).isPresent()) {
+			accountDAO.save(account);
+			return ResponseEntity.ok().body(account);
+		}
+		else
+			return null;
+	
+
+	}
+
 }
