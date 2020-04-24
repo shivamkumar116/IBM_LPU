@@ -3,6 +3,7 @@ package in.ibm.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -34,7 +35,11 @@ public class AccountServiceImpl implements AccountService {
 		Iterable<Account> accounts = accountDAO.findAll();
 		List<AccountDto> accountDTO = new ArrayList<AccountDto>();
 		for (Account a : accounts) {
-			accountDTO.add(new AccountDto(a.getAccountID(), a.getAccountType(), a.getBalance()));
+			/*
+			 * accountDTO.add(new AccountDto(a.getAccountID(), a.getAccountType(),
+			 * a.getBalance()));
+			 */
+			accountDTO.add(new AccountDto(a.getAccountType(), a.getBalance()));
 		}
 		return ResponseEntity.ok().body(accountDTO);
 	}
@@ -43,8 +48,8 @@ public class AccountServiceImpl implements AccountService {
 	public ResponseEntity<AccountDto> findAccountById(int id) {
 		if (accountDAO.findById(id).isPresent()) {
 			Account account = accountDAO.findById(id).get();
-			AccountDto accountDTO = new AccountDto(account.getAccountID(), account.getAccountType(),
-					account.getBalance());
+
+			AccountDto accountDTO = new AccountDto(account.getAccountType(), account.getBalance());
 			return ResponseEntity.ok().body(accountDTO);
 		} else
 			return null;
@@ -52,8 +57,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public ResponseEntity<AccountDto> save(AccountDto accountDto) {
-		Account account = new Account(accountDto.getAccountID(), accountDto.getAccountType(),
-				accountDto.getAccountBalance());
+		
+		Account account = new Account(UUID.randomUUID().toString(),accountDto.getAccountType(), accountDto.getAccountBalance());
 		accountDAO.save(account);
 		return ResponseEntity.ok().body(accountDto);
 	}
@@ -62,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
 	public ResponseEntity<AccountDto> deleteAccount(int id) {
 		if (accountDAO.findById(id).isPresent()) {
 			Account account = accountDAO.findById(id).get();
-			AccountDto accountDto = new AccountDto(account.getAccountID(), account.getAccountType(),
+			AccountDto accountDto = new AccountDto(account.getAccountType(),
 					account.getBalance());
 			accountDAO.deleteById(id);
 			return ResponseEntity.ok().body(accountDto);
@@ -72,13 +77,11 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public ResponseEntity<Account> updateAccont(Account account) {
-		if(accountDAO.findById(account.getAccountNumber()).isPresent()) {
+		if (accountDAO.findById(account.getAccountNumber()).isPresent()) {
 			accountDAO.save(account);
 			return ResponseEntity.ok().body(account);
-		}
-		else
+		} else
 			return null;
-	
 
 	}
 
