@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "accounts")
-
 public class Account {
 
 	@Id

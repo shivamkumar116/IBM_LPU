@@ -2,7 +2,6 @@ package in.ibm.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -57,8 +56,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public ResponseEntity<AccountDto> save(AccountDto accountDto) {
-		
-		Account account = new Account(UUID.randomUUID().toString(),accountDto.getAccountType(), accountDto.getAccountBalance());
+
+		Account account = new Account(UUID.randomUUID().toString(), accountDto.getAccountType(),
+				accountDto.getAccountBalance());
 		accountDAO.save(account);
 		return ResponseEntity.ok().body(accountDto);
 	}
@@ -67,9 +67,9 @@ public class AccountServiceImpl implements AccountService {
 	public ResponseEntity<AccountDto> deleteAccount(int id) {
 		if (accountDAO.findById(id).isPresent()) {
 			Account account = accountDAO.findById(id).get();
-			AccountDto accountDto = new AccountDto(account.getAccountType(),
-					account.getBalance());
+			AccountDto accountDto = new AccountDto(account.getAccountType(), account.getBalance());
 			accountDAO.deleteById(id);
+		
 			return ResponseEntity.ok().body(accountDto);
 		} else
 			return null;
@@ -83,6 +83,25 @@ public class AccountServiceImpl implements AccountService {
 		} else
 			return null;
 
+	}
+
+	@Override
+	public ResponseEntity<Iterable<Account>> findByAccountType(String accountType) {
+		Iterable<Account> accounts = accountDAO.findByAccountType(accountType);
+		return ResponseEntity.ok().body(accounts);
+	}
+
+	@Override
+	public ResponseEntity<Iterable<Account>> findByAccountTypeAndBalance(String accountType, double balance) {
+		Iterable<Account> accounts = accountDAO.findByAccountTypeAndBalance(accountType, balance);
+		return ResponseEntity.ok().body(accounts);
+	}
+
+	@Override
+	@Transactional
+	public void removeByAccountType(String accountType) {
+		accountDAO.deleteByAccountType(accountType);
+		
 	}
 
 }

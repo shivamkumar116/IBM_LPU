@@ -68,4 +68,21 @@ public class AccountRestController {
 	public ResponseEntity<Account> updateAccount(@RequestBody Account account){
 		return accountService.updateAccont(account);
 	}
+	
+	@ApiOperation("Find account by its type")
+	@GetMapping("/accounts/get/{accountType}")
+	public ResponseEntity<Iterable<Account>> findAccountByType(@PathVariable String accountType){
+		return accountService.findByAccountType(accountType);
+	}
+	
+	@ApiOperation("Find account by its type and balance")
+	@GetMapping("/accounts/get/{accountType}/{Balance}")
+	public ResponseEntity<Iterable<Account>> findAccountByTypeAndBalance(@PathVariable String accountType,@PathVariable double Balance){
+		return accountService.findByAccountTypeAndBalance(accountType, Balance);
+	}
+	@ApiOperation("Delete an account by Account type")
+	@DeleteMapping("/accounts/delete/{accountType}")
+	public void deleteaccount(@PathVariable String accountType){
+		 accountService.removeByAccountType(accountType);
+	}
 }
