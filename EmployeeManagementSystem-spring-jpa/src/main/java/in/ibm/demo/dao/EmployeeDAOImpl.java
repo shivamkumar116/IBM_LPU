@@ -29,7 +29,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-
 	public Employee createEmployee(Employee employee) {
 		
 		entityManager.persist(employee);
@@ -38,14 +37,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	
 	public Employee getEmployeeByID(int employeeId) {
 
 		return entityManager.find(Employee.class, employeeId);
 	}
 
 	@Override
-	
 	public Employee updateEmployee(Employee employee) {
 
 		Employee emp = (Employee) entityManager.merge(employee);
@@ -54,7 +51,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-
 	public Employee deleteEmployee(int id) {
 
 		Employee employee = getEmployeeByID(id);
