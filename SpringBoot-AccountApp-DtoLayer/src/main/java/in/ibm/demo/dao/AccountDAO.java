@@ -16,4 +16,5 @@ public interface AccountDAO extends CrudRepository<Account, Integer> {
 	public Iterable<Account> findByAccountTypeAndBalance(String accountType, double balance);
 
 	public void deleteByAccountType(String accountType);
+	
 }
