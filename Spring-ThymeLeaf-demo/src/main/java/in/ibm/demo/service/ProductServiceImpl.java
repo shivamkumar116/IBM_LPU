@@ -17,28 +17,29 @@ public class ProductServiceImpl implements ProductService {
 		this.productDao = productDao;
 	}
 
-
-
 	@Override
 	public Iterable<Product> getProducts() {
-		
+
 		return productDao.findAll();
 	}
 
-
-
 	@Override
 	public Product findProductById(int id) {
-		
+
 		return productDao.findById(id).get();
 	}
-
-
 
 	@Override
 	public void create(Product product) {
 		productDao.save(product);
-		
+
 	}
 
+	@Override
+	public void deleteById(int id) {
+		productDao.deleteById(id);
+
+	}
+
+	
 }

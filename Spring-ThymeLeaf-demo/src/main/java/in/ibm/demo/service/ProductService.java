@@ -10,4 +10,8 @@ public interface ProductService {
 	
 	public void create(Product product);
 	
+	
+	public void deleteById(int id);
+
+	
 }
