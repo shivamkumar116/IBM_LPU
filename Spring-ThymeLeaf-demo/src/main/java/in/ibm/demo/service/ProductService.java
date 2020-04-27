@@ -6,4 +6,8 @@ public interface ProductService {
 
 	public Iterable<Product> getProducts();
 	
+	public Product findProductById(int id);
+	
+	public void create(Product product);
+	
 }

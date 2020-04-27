@@ -2,43 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet"
+<title>View Product</title>
+<link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	crossorigin="anonymous"
+	th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
 </head>
 <body>
-	<div class="container">
-		<div th:if="${not #lists.isEmpty(products)}">
-			<h2>Product List</h2>
-			<table class="table">
-				<tr>
-					<th>Id</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Price</th>
-				</tr>
-				<tr th:each="product : ${products}" class="thead-dark">
-					<td th:text="${product.id}"></td>
-					<td th:text="${product.name}"></td>
-					<td th:text="${product.description}"></td>
-					<td th:text="'$'+${product.price}"></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+<div class="container">
 
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Show Product</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 font-weight-bold">Product Id:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${product.id}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 font-weight-bold">Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${product.name}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 font-weight-bold">Description:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${product.description}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 sm-2 font-weight-bold">Price:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="'$'+${product.price}"></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+    
+    <a class="btn btn-link" href="/products">Return to list</a>
+    </div>
+</div>
 </body>
 </html>
