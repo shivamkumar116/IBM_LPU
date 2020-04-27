@@ -58,21 +58,17 @@ public class ProductController {
 	}
 	
 	@PostMapping("/product")
-	public String save(Product product) {
+	public String saveorupdate(Product product) {
 		productService.create(product);
 		 return "redirect:/products/";
 	}
 	
-	@PutMapping("/products")
-	public String update(Product product) {
-		productService.create(product);
-		 return "redirect:/products/";
-	}
-	
-	@DeleteMapping("/products/{productID}")
-	public String deleteByID(@PathVariable int productID,Model model) {
-		productService.deleteById(productID);
-		return "products";
-	}
+	/*
+	 * @PutMapping("/products") public String update(Product product) {
+	 * productService.create(product); return "redirect:/Index/"; }
+	 */
 
+	
+
+	
 }
