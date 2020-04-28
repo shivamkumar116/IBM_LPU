@@ -1,0 +1,25 @@
+server:
+  port: 1234
+eureka:
+  client:
+    registerWithEureka: true
+spring:
+  application:
+    name: zuul-proxy
+  cloud:
+    config:
+      uri: http://localhost:8888
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:1111
+zuul:
+  prefix: /api
+  routes:
+    account:
+      path: /account/**
+      serviceId: Account-service
+    customer:
+      path: /customer/**
+      serviceId: customer-service
