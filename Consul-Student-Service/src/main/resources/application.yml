@@ -1,0 +1,19 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: Student-Service
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+  datasource:
+    password: vk7j5qaMX%
+    url: jdbc:mysql://localhost:3306/consul
+    username: root

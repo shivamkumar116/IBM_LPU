@@ -1,0 +1,22 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: Zuul-Proxy
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+zuul:
+  prefix: /api
+  routes:
+    School:
+      path: /school/**
+      service-id: School-Service
+    Stundet:
+      path: /student/**
+      service-id: Student-Service
