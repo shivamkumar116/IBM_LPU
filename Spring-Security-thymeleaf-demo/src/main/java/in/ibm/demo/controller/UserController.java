@@ -11,9 +11,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import in.ibm.demo.dao.EmployeeDAO;
+import in.ibm.demo.model.Employee;
 import in.ibm.demo.model.MyUser;
 
 @Controller
@@ -26,12 +29,18 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private EmployeeDAO employeeDao;
+	
 	@RequestMapping("/index")
 	public String index() {
 
 		return "Index";
 	}
 
+
+
+	
 	@RequestMapping("/register")
 	public String getForm(Model model) {
 		model.addAttribute("user", new MyUser());
@@ -48,4 +57,15 @@ public class UserController {
 		 return "Success";
 	}
 	
+	@GetMapping("/saveEmployee")
+	public String save(Model model) {
+		model.addAttribute("employee",new Employee());
+		return "employeeForm";
+	}
+	
+	@PostMapping("/save")
+	public String saveEmployee(Employee employee) {
+		employeeDao.save(employee);
+		return "Success";
+	}
 }

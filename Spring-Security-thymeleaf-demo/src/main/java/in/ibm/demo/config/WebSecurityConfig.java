@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,11 +21,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder());
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/admin").hasRole(ADMIN).antMatchers("/user")
-				.hasAnyRole(ADMIN, USER).antMatchers("/", "/register").permitAll().and().formLogin();
+		http.csrf().disable().authorizeRequests()
+        .antMatchers("/saveEmployee").hasRole(ADMIN)
+        .antMatchers("/employees/**").hasAnyRole(USER)
+        .antMatchers("/", "/register").permitAll()
+        .and().formLogin()
+        .and()
+        .logout().permitAll();
 	}
 
 	@Bean

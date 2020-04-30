@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Register | User</title>
+<title>Save Employee</title>
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -14,59 +15,44 @@
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 </head>
+</head>
 <body>
-
-	<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
 		<a class="navbar-brand" href="/index">User App</a>
-
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="/register">Register
-			</a></li>
-		</ul>
+		
+			
 	</nav>
+<div class="container">
 
+<form th:object="${employee}"  th:action="@{/save}" method="post">
 
-
-	<div class="container mt-2">
-		<h2>Register yourself!!</h2>
-
-		<div class="row">
-			<div class="col-lg-6">
-				<form class="form-horizontal" th:object="${user}"
-					th:action="@{/register}" method="post">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Username:</label>
+<div class="form-group">
+						<label class="col-sm-2 control-label">Name:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{userName}" />
+							<input type="text" class="form-control" th:field="*{name}" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Password:</label>
+						<label class="col-sm-2 control-label">Employee Code</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control"
-								th:field="*{password}" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Roles:</label>
-
-						<div class="col-sm-10">
-							<select th:field="*{roles}" class="form-control">
-								<option value="ROLE_USER">USER</option>
-								<option value="ROLE_ADMIN">ADMIN</option>
-							</select>
+							<input type="text" class="form-control" th:field="*{empcode}" />
 						</div>
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success">Submit</button>
 					</div>
-				</form>
-			</div>
-		</div>
 
-	</div>
 
-	<!-- Optional JavaScript -->
+</form>
+<form action="/logout" method="post">
+<input type="submit" value="logout"/>
+</form>
+
+</div>
+
+
+
+<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
