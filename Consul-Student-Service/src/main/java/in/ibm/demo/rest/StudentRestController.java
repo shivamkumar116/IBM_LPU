@@ -16,7 +16,11 @@ public class StudentRestController {
 
 	@GetMapping("/students/{schoolName}")
 	public Iterable<Student> findStudentBySchoolName(@PathVariable String schoolName) {
-		return studentService.findBySchoolName(schoolName);
+		Iterable<Student>students = studentService.findBySchoolName(schoolName);
+		if(students==null)
+			return null;
+		else
+			return students;
 	}
 
 }

@@ -1,5 +1,7 @@
 package in.ibm.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,11 +14,9 @@ public class SchoolServiceImpl implements SchoolService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Iterable<Object> getStudents(String schoolName) {
+	public List<Object> getStudents(String schoolName) {
+		return restTemplate.getForObject("http://Student-Service/students/{schoolName}", List.class, schoolName);
 
-		Iterable<Object> students = (Iterable<Object>) restTemplate
-				.getForObject("http://Student-Service/students/{schoolName}", Object.class, schoolName);
-		return students;
 	}
 
 }
